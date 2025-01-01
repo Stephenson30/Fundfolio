@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
+
+.header {
+  border: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: .5rem;
+}
+
+.logo {
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.8rem;
+}
+
+.connect_section,
+.x {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.connect_section .x {
+  padding: .8rem 2rem;
+  background: rgba(59,130,246,.8);
+  color: white;
+  font-weight: 700;
+
+}
+
+.connect_section button {
+  padding: 1rem 2rem;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 2px solid black;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.connect_section .wallet{
+    background: rgba(217, 247, 169, .5);
+    color: black;
+}

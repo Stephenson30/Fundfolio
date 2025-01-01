@@ -1,0 +1,282 @@
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
+
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: first baseline;
+  width: 100%;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  padding: 2rem;
+  gap: 15px;
+  overflow: hidden;
+}
+
+.project_card {
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  max-width: 750px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none; /* To remove underline from Link */
+  color: inherit; /* To maintain the text color */
+  /* margin: 0 auto; */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.svg {
+  align-self: first baseline;
+  border: 2px solid black;
+  border-radius: 50%;
+  margin: 20px 0 -20px 20px;
+}
+
+.project_image {
+  border-radius: 8px;
+  border: 2px solid black;
+  height: 300px;
+}
+
+.project_links {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+}
+
+.project_links > * {
+  border: 2px solid black;
+  padding: 0.5rem 1.5rem;
+  border-radius: 8px;
+}
+
+.project_github {
+  background: rgba(0, 0, 0, 0.9);
+  transition: background-color 0.3s ease;
+  color: #fff;
+}
+
+.project_github:hover {
+  background: rgba(28, 28, 28, 0.9);
+}
+
+.project_website {
+  background: rgba(217, 247, 169, 0.9);
+  transition: background-color 0.3s ease;
+}
+
+.project_website:hover {
+  background: rgba(91, 121, 42, 0.9);
+}
+
+.project_twitter {
+  background: rgba(59, 130, 246, 0.8);
+  transition: background-color 0.3s ease;
+  padding: 5px 2rem;
+}
+
+.project_twitter:hover {
+  background-color: #0056b3;
+}
+
+.project_docs {
+  background: #fff;
+  color: #000;
+  transition: background-color 0.3s ease;
+}
+
+.project_docs:hover {
+  background: rgba(221, 221, 221, 0.9);
+}
+
+.tip_btn {
+  font-size: 1.2rem;
+  padding: 0.8rem 1.5rem;
+  background: rgba(59, 130, 246, 0.8);
+  border: 2px solid black;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "PT Mono", serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tip_btn:hover {
+  background-color: #0056b3;
+}
+
+/* funders section */
+
+.funders {
+  padding: 18px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  border: 2px solid black;
+}
+
+.funders_list {
+  padding: 18px 0;
+  max-height: 600px; /* Limit height to make it scrollable */
+  overflow-y: auto; /* Enable vertical scrolling */
+  scroll-behavior: smooth;
+}
+
+.funder_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between funders */
+}
+
+.funder_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 2px solid black;
+}
+
+.funder_item p {
+  margin: 0;
+  font-size: 14px;
+  color: #333;
+  word-break: break-word; /* Handle long wallet addresses */
+}
+
+.transaction_btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: 2px solid black;
+}
+
+.transaction_btn:hover {
+  background-color: #0056b3;
+}
+
+.funders h2 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+}
+
+/* pop up section */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup_content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  border: 2px solid black;
+}
+
+.close_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #000;
+}
+
+.qr_code {
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.contract_address {
+  font-size: 14px;
+  word-break: break-all;
+  background: #f9f9f9;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.copy_btn {
+  margin: 10px 0;
+  padding: 5px 10px;
+  background-color: #171717;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid black;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.copy_btn:hover {
+  background-color: #5a6268;
+}
+
+.tip_input {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  border: 2px solid black;
+  font-size: 16px;
+}
+
+.wallet_btn,
+.tip_project_btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid black;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.wallet_btn:hover,
+.tip_project_btn:hover {
+  background-color: #0056b3;
+}
+
+.copy_feedback {
+  color: green;
+  font-size: 12px;
+  margin-top: 5px;
+  text-align: center;
+}
