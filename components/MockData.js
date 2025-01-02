@@ -7,7 +7,7 @@ export const MockData = [
       "githubLink": "https://github.com/openlib",
       "twitterHandle": "@openlib_project",
       "walletAddress": "0xAbCdEf1234567890AbCdEf1234567890AbCdEf12",
-      "tipJarAddress": "https://www.patreon.com/openlib",
+      "tipJarAddress": "",
       "category": ["school", "education", "web3"],
       "programming_language": ["c++", "javascript", "python"],
       "funders": ["0xAbCdEf1234567890AbCdEf1234567890AbCdEf12","0xAbCdEf1234567890AbCdEf1234567890AbCdEf12","0xAbCdEf1234567890AbCdEf1234567890AbCdEf12"],

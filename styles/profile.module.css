@@ -1,0 +1,74 @@
+.profile_container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1.5rem;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 10%;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+}
+
+.profile_details {
+  margin-bottom: 20px;
+  /* padding: 1.5rem; */
+  text-align: center;
+  font-size: 12px;
+  width: 100%;
+
+}
+
+.profile_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid black;
+}
+
+.profile_actions button {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  /* border: none; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create_tipjar_btn {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem 2rem;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.withdraw_btn {
+  background-color: #ff5722;
+  color: white;
+  padding: 1rem 2rem;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.profile_actions button:hover {
+  opacity: 0.9;
+}
+
+.balance {
+  padding: 3rem 0 1rem;
+  text-align: center;
+}

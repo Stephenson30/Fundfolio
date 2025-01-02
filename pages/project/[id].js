@@ -4,11 +4,7 @@ import styles from "@/styles/project.module.css";
 import { MockData } from "@/components/MockData";
 import Link from "next/link";
 import { ethers } from "ethers";
-import {
-  contractAddress,
-  contractABI,
-  TipJarCreatedContractABI,
-} from "@/components/constants";
+import { TipJarCreatedContractABI } from "@/components/constants";
 
 export default function Project() {
   const [showPopup, setShowPopup] = useState(false);

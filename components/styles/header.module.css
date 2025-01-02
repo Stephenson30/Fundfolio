@@ -46,3 +46,17 @@
     background: rgba(217, 247, 169, .5);
     color: black;
 }
+
+.profile_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 2rem;
+  font-family: "PT Mono", serif;
+  font-weight: 400;
+  font-style: normal;
+  border: 2px solid black;
+  border-radius: .5rem;
+  cursor: pointer;
+}

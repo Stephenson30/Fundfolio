@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import TwitterProvider from "next-auth/providers/twitter";
 
-export const authOptions = {
+ const authOptions = {
   // Configure one or more authentication providers
   providers: [
     TwitterProvider({
@@ -13,4 +13,4 @@ export const authOptions = {
   ],
 };
 
-export default NextAuth(authOptions);
+// export default NextAuth(authOptions);
