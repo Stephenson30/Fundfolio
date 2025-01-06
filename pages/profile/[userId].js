@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { MockData } from "@/components/MockData";
 import styles from "@/styles/profile.module.css";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { ethers } from "ethers";
 import {
   contractAddress,
@@ -15,11 +16,39 @@ export default function Profile() {
   const [totaltip, getTotalTip] = useState(0); //store balance of jar address
   const params = useParams(); // Extract userId or email from the route
   const router = useRouter();
+  const { data: session } = useSession();
   const [user, setUser] = useState(null); // Store user details
   const [isLoggedIn, setIsLoggedIn] = useState(true); // Simulate login state
 
+  const [bio, setBio] = useState("This is your bio. Click edit to change it."); // Default bio
+  const [github, setGithub] = useState(user?.github || "");
+  const [docs, setDocs] = useState(user?.docs || "");
+  const [twitter, setTwitter] = useState(user?.twitter || "");
+  const [website, setWebsite] = useState(user?.website || "");
+  const [other, setOther] = useState(user?.other || "");
+  const [category, setCategory] = useState(user?.category || "");
+  const [programmingLanguage, setProgrammingLanguage] = useState(
+    user?.programmingLanguage || ""
+  );
+  const [isEditing, setIsEditing] = useState(false); // Toggle edit mode
+  const [copySuccess, setCopySuccess] = useState(false);
+
   const userId = params?.userId || params?.email; // Handle dynamic routing
   console.log(userId);
+
+  const handleShareClick = () => {
+    copyToClipboard();
+  };
+
+  const copyToClipboard = () => {
+   //const link = window.location.href; // Use the current page URL or your desired link
+    const link = `http://localhost:3000/project/${userId?.id}`; // Use the current page URL or your desired link
+    navigator.clipboard.writeText(link).then(() => {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000); // Hide "Copied!" after 2 seconds
+    });
+  };
+
   useEffect(() => {
     // Simulate fetching user data
     if (userId) {
@@ -120,6 +149,7 @@ export default function Profile() {
         });
         setTipContract(event.args.tipJarAddress);
         alert("Tip Jar Created!"); // Simulate creating a tip jar
+        balanceOf();
       } else {
         console.error("TipJarCreated event not found in logs.");
       }
@@ -170,6 +200,40 @@ export default function Profile() {
     withdraw(); // Simulate withdraw
   };
 
+  const handleEditToggle = () => {
+    if (isEditing) {
+      // Save changes logic (e.g., update the backend)
+      console.log({
+        bio,
+        github,
+        docs,
+        twitter,
+        website,
+        other,
+        category,
+        programmingLanguage,
+      });
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleCancel = () => {
+    // Reset fields to original values
+    setBio(user?.bio || "");
+    setGithub(user?.github || "");
+    setDocs(user?.docs || "");
+    setTwitter(user?.twitter || "");
+    setWebsite(user?.website || "");
+    setOther(user?.other || "");
+    setCategory(user?.category || "");
+    setProgrammingLanguage(user?.programmingLanguage || "");
+    setIsEditing(false);
+  };
+
+  if (!session) {
+    router.push("/");
+  }
+
   return (
     <div style={{ padding: "1.5rem" }}>
       <svg
@@ -195,11 +259,118 @@ export default function Profile() {
             alt={`${user.name} profile`}
             className={styles.profile_image}
           />
-          <p style={{ width: "100%" }}>
-            <strong style={{ fontSize: "16px" }}>owners Address:</strong>{" "}
-            {user.walletAddress}
-          </p>
-          <p className={styles.balance}>balance: {balance}</p>
+          <div className={styles.bio_section}>
+            {isEditing ? (
+              <div>
+                <textarea
+                  className={styles.bio_textarea}
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                  placeholder="Add your bio here..."
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="GitHub Link"
+                  value={github}
+                  onChange={(e) => setGithub(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Docs Link"
+                  value={docs}
+                  onChange={(e) => setDocs(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Twitter Handle"
+                  value={twitter}
+                  onChange={(e) => setTwitter(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Website"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Other"
+                  value={other}
+                  onChange={(e) => setOther(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                />
+                <input
+                  type="text"
+                  className={styles.input}
+                  placeholder="Programming Language"
+                  value={programmingLanguage}
+                  onChange={(e) => setProgrammingLanguage(e.target.value)}
+                />
+                <div>
+                  <button
+                    className={styles.save_btn}
+                    onClick={handleEditToggle}
+                  >
+                    Save
+                  </button>
+                  <button className={styles.cancel_btn} onClick={handleCancel}>
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.profile_detail}>
+                <p className={styles.bio_text}>{bio || "No bio available."}</p>
+                <p className={styles.bio_text}>
+                  GitHub: {github || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Docs: {docs || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Twitter: {twitter || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Website: {website || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Other: {other || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Category: {category || "Not provided"}
+                </p>
+                <p className={styles.bio_text}>
+                  Programming Language: {programmingLanguage || "Not provided"}
+                </p>
+                <button className={styles.edit_btn} onClick={handleEditToggle}>
+                  Edit
+                </button>
+              </div>
+            )}
+          </div>
+
+          {tipContract ? (
+            <div>
+              <p style={{ width: "100%" }}>
+                <strong style={{ fontSize: "16px" }}>owners Address:</strong>{" "}
+                {user.walletAddress}
+              </p>
+              <p className={styles.balance}>balance: {balance}</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
         <div className={styles.profile_actions}>
           {tipContract ? (
@@ -211,9 +382,6 @@ export default function Profile() {
               <button className={styles.withdraw_btn} onClick={handleWithdraw}>
                 Withdraw
               </button>
-              <button className={styles.withdraw_btn} onClick={balanceOf}>
-                check balance
-              </button>
             </>
           ) : (
             <button
@@ -223,6 +391,16 @@ export default function Profile() {
               Create Tip Jar
             </button>
           )}
+        </div>
+        {copySuccess && <p className={styles.copy_feedback}>Copied!</p>}
+        <div className={styles.btn_action}>
+          {" "}
+          <button className={styles.share_btn} onClick={handleShareClick}>
+            Share Folio
+          </button>
+          <button className={styles.sign_btn} onClick={() => signOut()}>
+            Sign Out
+          </button>
         </div>
       </div>
     </div>

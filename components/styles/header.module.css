@@ -26,7 +26,7 @@
 
 .connect_section .x {
   padding: .8rem 2rem;
-  background: rgba(59,130,246,.8);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   font-weight: 700;
 
@@ -43,7 +43,7 @@
 }
 
 .connect_section .wallet{
-    background: rgba(217, 247, 169, .5);
+    background: rgba(59,130,246,.8);
     color: black;
 }
 

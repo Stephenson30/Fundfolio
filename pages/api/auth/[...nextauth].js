@@ -1,16 +1,29 @@
 import NextAuth from "next-auth";
-import TwitterProvider from "next-auth/providers/twitter";
+import GitHubProvider from "next-auth/providers/github";
 
- const authOptions = {
+const authOptions = {
   // Configure one or more authentication providers
   providers: [
-    TwitterProvider({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET,
-      version: "2.0", // opt-in to Twitter OAuth 2.0
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
-    // ...add more providers here
   ],
+
+  // Optional: Add additional configurations if needed
+  callbacks: {
+    async jwt({ token, account }) {
+      if (account) {
+        token.accessToken = account.access_token;
+      }
+      console.log("account:",account, "token:",token);
+      return token;
+    },
+    async session({ session, token }) {
+      session.accessToken = token.accessToken;
+      return session;
+    },
+  },
 };
 
-// export default NextAuth(authOptions);
+export default NextAuth(authOptions);
